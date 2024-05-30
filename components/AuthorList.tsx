@@ -19,7 +19,9 @@ export const AuthorList = ({ settings, authors, isPost }: AuthorListProps) => {
   const text = get(getLang(settings.lang))
   const { nextImages } = settings.processEnv
   const { url: cmsUrl } = settings
-
+  const customLoader = ({ src, width, quality } : any) => {
+    return `${src}?w=${width}&q=${quality || 75}`;
+  };
   return (
     <ul className="author-list">
       {authors?.map((author, i) => {
@@ -38,6 +40,7 @@ export const AuthorList = ({ settings, authors, isPost }: AuthorListProps) => {
                     <div className="author-profile-image">
                       {profileImg && nextImages.feature ? (
                         <Image
+                          loader={customLoader}
                           className="author-profile-image"
                           src={profileImg.url}
                           alt={author.name}
@@ -79,7 +82,7 @@ export const AuthorList = ({ settings, authors, isPost }: AuthorListProps) => {
                 <Link href={url}>
                   {profileImg && nextImages.feature ? (
                     <a className={`${(isPost && `author`) || `static`}-avatar`} aria-label={author.name}>
-                      <Image src={profileImg.url} alt={author.name} layout="responsive" quality={nextImages.quality} {...profileImg.dimensions} />
+                      <Image loader={customLoader} src={profileImg.url} alt={author.name} layout="responsive" quality={nextImages.quality} {...profileImg.dimensions} />
                     </a>
                   ) : author.profile_image ? (
                     <a className={`${(isPost && `author`) || `static`}-avatar`} aria-label={author.name}>

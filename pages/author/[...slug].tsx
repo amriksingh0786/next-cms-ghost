@@ -57,12 +57,12 @@ const AuthorIndex = ({ cmsData }: AuthorIndexProps) => {
 export default AuthorIndex
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  if (!(params && params.slug && Array.isArray(params.slug))) throw Error('getStaticProps: wrong parameters.')
+  if (!(params && params?.slug && Array.isArray(params?.slug))) throw Error('getStaticProps: wrong parameters.')
   const [slug] = params.slug.reverse()
 
-  const author = await getAuthorBySlug(slug)
-  const posts = await getPostsByAuthor(slug)
-  const settings = await getAllSettings()
+  const author = await getAuthorBySlug(slug) || undefined
+  const posts = await getPostsByAuthor(slug) || undefined
+  const settings = await getAllSettings() || undefined
 
   const { cover_image, profile_image } = author
   const siteUrl = settings.processEnv.siteUrl

@@ -51,7 +51,9 @@ export function Contact({ cmsData }: PageProps) {
   const postClass = PostClass({ tags: page.tags, isPage: page && true, isImage: !!featImg })
   //const htmlAst = page.htmlAst
   //if (htmlAst === undefined) throw Error('Page.tsx: htmlAst must be defined.')
-
+    const customLoader = ({ src, width, quality } : any) => {
+      return `${src}?w=${width}&q=${quality || 75}`;
+    };
   return (
     <>
       <SEO {...{ settings, meta_title, meta_description, seoImage }} />
@@ -68,6 +70,7 @@ export function Contact({ cmsData }: PageProps) {
               (nextImages.feature && featImg.dimensions ? (
                 <figure className="post-full-image" style={{ display: 'inherit' }}>
                   <Image
+                    loader={customLoader}
                     src={featImg.url}
                     alt={page.title}
                     quality={nextImages.quality}

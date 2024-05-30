@@ -58,7 +58,9 @@ export const SiteNav = ({ settings, className, postTitle }: SiteNavProps) => {
     const { width, height } = image.dimensions
     return (targetHeight * width) / height
   }
-
+  const customLoader = ({ src, width, quality }: any) => {
+    return `${src}?w=${width}&q=${quality || 75}`;
+  };
   return (
     <nav className={className}>
       <div className="site-nav-left-wrapper">
@@ -72,7 +74,7 @@ export const SiteNav = ({ settings, className, postTitle }: SiteNavProps) => {
                     width: `${calcSiteLogoWidth(siteLogo, targetHeight)}px`,
                   }}
                 >
-                  <Image className="site-nav-logo" src={siteLogo.url} alt={title} layout="responsive" quality={nextImages.quality} {...siteLogo.dimensions} />
+                  <Image loader={customLoader} className="site-nav-logo" src={siteLogo.url} alt={title} layout="responsive" quality={nextImages.quality} {...siteLogo.dimensions} />
                 </div>
               </a>
             ) : site.logo ? (

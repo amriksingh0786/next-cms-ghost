@@ -2552,10 +2552,10 @@ negotiator@0.6.2:
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
   integrity sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
 
-next-image-loader@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/next-image-loader/-/next-image-loader-2.0.6.tgz#e8596efb93a6d73e87c797fab8d7139ef1bea9f9"
-  integrity sha512-TeMeOyQ1DbI9ZfCKjrvErsMrClpkm2idPfPAUlURSNV3NQPCBhhQi40ejlmvJQ4Btr1UFNMPFQ35LeHDJWoN5A==
+next-image-loader@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/next-image-loader/-/next-image-loader-2.2.0.tgz#b751dc2bf30eba39cadc76612a52b4e87fd8520a"
+  integrity sha512-czQ0aYzmxfWoJW7kKW0DKy3qDiYBibxjsbrqIromZda6+bFzh7wN5FmCDqblHe0ZXqF8/AStfGcJI+01wsdrMA==
 
 next-sitemap@^2.1.14:
   version "2.1.14"

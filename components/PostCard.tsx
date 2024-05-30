@@ -30,7 +30,9 @@ export const PostCard = ({ settings, post, num, isHome }: PostCardProps) => {
   const postClass = PostClass({ tags: post.tags, isFeatured: post.featured, isImage: !!featImg })
   const large = (featImg && isHome && num !== undefined && 0 === num % 6 && `post-card-large`) || ``
   const authors = post?.authors?.filter((_, i) => (i < 2 ? true : false))
-
+  const customLoader = ({ src, width, quality }: any) => {
+    return `${src}?w=${width}&q=${quality || 75}`;
+  };
   return (
     <article className={`post-card ${postClass} ${large}`}>
       {featImg && (
@@ -39,6 +41,7 @@ export const PostCard = ({ settings, post, num, isHome }: PostCardProps) => {
             {nextImages.feature ? (
               <div className="post-card-image">
                 <Image
+                  loader={customLoader}
                   src={featImg.url}
                   alt={post.title}
                   sizes="(max-width: 640px) 320px, (max-width: 1000px) 500px, 680px"

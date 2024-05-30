@@ -22,7 +22,9 @@ export const HeaderAuthor = ({ settings, author }: HeaderAuthorProps) => {
   const profileImg = author.profileImage
 
   const numberOfPosts = author.count?.posts
-
+  const customLoader = ({ src, width, quality } : any) => {
+    return `${src}?w=${width}&q=${quality || 75}`;
+  };
   return (
     <header className="site-archive-header">
       <div className="outer site-nav-main">
@@ -35,7 +37,7 @@ export const HeaderAuthor = ({ settings, author }: HeaderAuthorProps) => {
           <div className="site-header-content author-header">
             {profileImg && nextImages.feature ? (
               <div className="author-profile-image">
-                <Image className="author-profile-image" src={profileImg.url} alt={author.name} layout="responsive" quality={nextImages.quality} {...profileImg.dimensions} />
+                <Image loader={customLoader} className="author-profile-image" src={profileImg.url} alt={author.name} layout="responsive" quality={nextImages.quality} {...profileImg.dimensions} />
               </div>
             ) : author.profile_image ? (
               /* eslint-disable @next/next/no-img-element */

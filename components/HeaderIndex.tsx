@@ -27,7 +27,9 @@ export const HeaderIndex = ({ settings }: HeaderIndexProps) => {
     const { width, height } = image.dimensions
     return (targetHeight * width) / height
   }
-
+  const customLoader = ({ src, width, quality }: any) => {
+    return `${src}?w=${width}&q=${quality || 75}`;
+  };
   return (
     <header className="site-home-header">
       <HeaderBackground srcImg={coverImg}>
@@ -46,7 +48,14 @@ export const HeaderIndex = ({ settings }: HeaderIndexProps) => {
                         width: `${calcSiteLogoWidth(siteLogo, targetHeight)}px`,
                       }}
                     >
-                      <Image src={siteLogo.url} alt={title} layout="responsive" quality={imageQuality} {...siteLogo.dimensions} />
+                      <Image
+                        loader={customLoader}
+                        src={siteLogo.url}
+                        alt={title}
+                        layout="responsive"
+                        quality={imageQuality}
+                        {...siteLogo.dimensions}
+                      />
                     </div>
                   </a>
                 </Link>

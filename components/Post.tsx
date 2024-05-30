@@ -55,12 +55,15 @@ export const Post = ({ cmsData }: PostProps) => {
   const readingTime = readingTimeHelper(post).replace(`min read`, text(`MIN_READ`))
   const featImg = post.featureImage
   const postClass = PostClass({ tags: post.tags, isFeatured: !!featImg, isImage: !!featImg })
-
+  const customLoader = ({ src, width, quality }: any) => {
+    return `${src}?w=${width}&q=${quality || 75}`;
+  };
   const htmlAst = post.htmlAst
   if (htmlAst === undefined) throw Error('Post.tsx: htmlAst must be defined.')
 
   const collectionPath = collections.getCollectionByNode(post)
-
+  
+  
   return (
     <>
       <SEO {...{ description, settings, seoImage, article: post, title }} />
@@ -123,6 +126,7 @@ export const Post = ({ cmsData }: PostProps) => {
                   (nextImages.feature && featImg.dimensions ? (
                     <figure className="post-full-image" style={{ display: 'inherit' }}>
                       <Image
+                        loader={customLoader}
                         src={featImg.url}
                         alt={title}
                         quality={nextImages.quality}

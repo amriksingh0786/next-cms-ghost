@@ -23,12 +23,14 @@ export const NextImage = (props: ComponentPropsWithNode) => {
   const imageDimensions = imageNode.imageDimensions
   const { src, className: classArray } = imageNode.properties
   const className = classArray?.join(' ')
-
+  const customLoader = ({ src, width, quality } : any) => {
+    return `${src}?w=${width}&q=${quality || 75}`;
+  };
   return (
     <div className="next-image-wrapper">
       <div {...{ className }}>
         <Zoom>
-          <Image src={src} {...imageDimensions} {...{ className }} alt="" />
+          <Image loader={customLoader} src={src} {...imageDimensions} {...{ className }} alt="" />
         </Zoom>
       </div>
     </div>
